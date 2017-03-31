@@ -1,4 +1,5 @@
 import React from 'react';
+import {GroceryItem} from './GroceryItem.jsx';
 
 class GroceryItemList extends React.Component
 {
@@ -8,7 +9,9 @@ class GroceryItemList extends React.Component
                 <h1>Grocery Listify</h1>
                 <div>
                     {
-                        this.props.items.map((item, index) => (<li key={index}>{item.name}</li>))
+                        this.props.items.map((item, index) => (
+                            <GroceryItem key={index} item={item} />)
+                        )
                     }
                 </div>
             </div>
