@@ -25,6 +25,21 @@ class GroceryItemStore {
             items.push(item);
             triggerListeners();
         };
+        let deleteGroceryItem = (item) => {
+            let index = items.findIndex((_item) =>
+                item.name == _item.name
+            );
+            console.log('remove it',index);
+            items.splice(index,1);
+            triggerListeners();
+        };
+        let setGroceryItemBought = (item,isBought) => {
+            let index = items.findIndex((_item) =>
+                item.name == _item.name
+            );
+            items[index].purchased = isBought;
+            triggerListeners();
+        };
 
         dispatcher.register(
             (event)=> {
@@ -34,6 +49,16 @@ class GroceryItemStore {
                         case 'add':
                             addGroceryItem(event.payload);
                             break;
+                        case 'delete':
+                            deleteGroceryItem(event.payload);
+                            break;
+                        case 'buy':
+                            setGroceryItemBought(event.payload,true);
+                            break;
+                        case 'unbuy':
+                            setGroceryItemBought(event.payload,false);
+                            break;
+
                     }
                 }
             }
